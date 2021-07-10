@@ -114,10 +114,19 @@ class _LoginWidgetState extends State<LoginWidget> {
                       color: Colors.red[900],
                       child: InkWell(
                         onTap: () {
-                          sendLoginRequest(
-                              context: context,
-                              username: usernameController.text,
-                              password: passwordController.text);
+                          // sendLoginRequest(
+                          //     context: context,
+                          //     username: usernameController.text,
+                          //     password: passwordController.text);
+                          Navigator.of(context)
+                              .pushReplacement(PageRouteBuilder(
+                            transitionDuration: Duration(milliseconds: 300),
+                            pageBuilder: (BuildContext context,
+                                Animation<double> animation,
+                                Animation<double> secondAnimation) {
+                              return Store();
+                            },
+                          ));
                         },
                         child: Container(
                           height: 70,
@@ -171,7 +180,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 Animation<double> secondAnimation,
                 Widget child) {
               return ScaleTransition(
-                child: child,
+                  child: child,
                   scale: Tween<double>(begin: 0, end: 1).animate(
                       CurvedAnimation(
                           parent: animation, curve: Curves.easeIn)));

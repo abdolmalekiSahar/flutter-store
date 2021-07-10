@@ -2,12 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:store/pages/basket/ShoppingBasket.dart';
 
 import 'BranchesPage.dart';
 import 'DescriptionPage.dart';
 import 'Product.dart';
 import 'ShopBottomNavigator.dart';
-import 'ShoppingBasket.dart';
+
 
 class Store extends StatefulWidget {
   const Store({Key? key}) : super(key: key);

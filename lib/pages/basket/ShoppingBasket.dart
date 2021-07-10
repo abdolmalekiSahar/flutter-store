@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:store/ShoppingBasketData.dart';
+import 'package:store/pages/basket/model/ShoppingBasketData.dart';
+
+
+import 'package:store/service_locator/service_locator.dart';
 import 'package:store/shoppingBasketItem.dart';
 
 class ShoppingBasket extends StatefulWidget {
@@ -10,6 +13,13 @@ class ShoppingBasket extends StatefulWidget {
 }
 
 class _ShoppingBasketState extends State<ShoppingBasket> {
+  ShoppingBasketData shoppingBasketData = getIt<ShoppingBasketData>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,12 +47,12 @@ class _ShoppingBasketState extends State<ShoppingBasket> {
         Padding(
           padding: EdgeInsets.only(bottom: 85),
           child: ListView.builder(
-            itemCount: ShoppingBasketData.getInstance().basketItems.length,
+            itemCount: shoppingBasketData.basketItems.length,
             itemBuilder: (context, position) {
               return GestureDetector(
                 child: Padding(
                   child: ShoppingBasketItem(
-                      ShoppingBasketData.getInstance().basketItems[position],
+                      shoppingBasketData.basketItems[position],
                       removeItem,
                       position),
                   padding: EdgeInsets.only(left: 10, right: 10, top: 10),
@@ -51,38 +61,33 @@ class _ShoppingBasketState extends State<ShoppingBasket> {
             },
           ),
         ),
-         Align(
-           alignment: Alignment.bottomCenter,
-           child: Material(
-             color: Colors.red,
-             child: InkWell(
-               onTap: (){
-
-               },
-               child: Container(
-                 width: MediaQuery.of(context).size.width,
-                 height: 85,
-                 child: Center(
-                   child: Text(
-                     "پرداخت",
-                     style: TextStyle(
-                       fontFamily: "Vazir",
-                       fontSize: 20,
-                       color: Colors.white
-                     ),
-                   ),
-                 ),
-               ),
-             ),
-           ),
-         )
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Material(
+            color: Colors.red,
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 85,
+                child: Center(
+                  child: Text(
+                    "پرداخت",
+                    style: TextStyle(
+                        fontFamily: "Vazir", fontSize: 20, color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        )
       ],
     );
   }
 
   void removeItem(int index) {
     setState(() {
-      ShoppingBasketData.getInstance().basketItems.removeAt(index);
+      shoppingBasketData.basketItems.removeAt(index);
     });
   }
 }

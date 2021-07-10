@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:store/service_locator/service_locator.dart';
 import 'LoginPage.dart';
 
-
-void main() => runApp(MainMaterial());
+void main() {
+  setupServiceLocator();
+  runApp(MainMaterial());
+}
 
 class MainMaterial extends StatelessWidget {
   const MainMaterial({Key? key}) : super(key: key);
@@ -15,4 +18,3 @@ class MainMaterial extends StatelessWidget {
     );
   }
 }
-
