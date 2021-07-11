@@ -114,19 +114,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                       color: Colors.red[900],
                       child: InkWell(
                         onTap: () {
-                          // sendLoginRequest(
-                          //     context: context,
-                          //     username: usernameController.text,
-                          //     password: passwordController.text);
-                          Navigator.of(context)
-                              .pushReplacement(PageRouteBuilder(
-                            transitionDuration: Duration(milliseconds: 300),
-                            pageBuilder: (BuildContext context,
-                                Animation<double> animation,
-                                Animation<double> secondAnimation) {
-                              return Store();
-                            },
-                          ));
+                          sendLoginRequest(
+                              context: context,
+                              username: usernameController.text,
+                              password: passwordController.text);
+                          
                         },
                         child: Container(
                           height: 70,
